@@ -37,6 +37,7 @@ final class TimerManager {
     func pause() {
         isPaused = true
         stopTimer()
+        stopFlashTimer()
     }
 
     func resume() {
@@ -98,10 +99,14 @@ final class TimerManager {
         RunLoop.main.add(flashTimer!, forMode: .common)
     }
 
-    private func stopFlash() {
+    private func stopFlashTimer() {
         flashTimer?.invalidate()
         flashTimer = nil
         isFlashing = false
+    }
+
+    private func stopFlash() {
+        stopFlashTimer()
         showDismissButton = false
     }
 
