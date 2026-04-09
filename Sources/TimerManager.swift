@@ -16,6 +16,7 @@ final class TimerManager {
     var remainingSeconds: Int = 0
     var isPaused: Bool = false
     var isFlashing: Bool = false
+    var showDismissButton: Bool = false
 
     private var timer: Timer?
     private var flashTimer: Timer?
@@ -60,7 +61,7 @@ final class TimerManager {
     }
 
     var phaseIcon: String {
-        isFlashing ? "⚡" : (phase == .working ? "🪑" : "🏃")
+        phase == .working ? "🪑" : "🏃"
     }
 
     private func tick() {
@@ -74,6 +75,7 @@ final class TimerManager {
     private func onPhaseEnd() {
         stopTimer()
         isFlashing = true
+        showDismissButton = true
         notificationManager.notify(phase: phase)
         startFlash()
     }
@@ -100,6 +102,7 @@ final class TimerManager {
         flashTimer?.invalidate()
         flashTimer = nil
         isFlashing = false
+        showDismissButton = false
     }
 
     private func stopTimer() {

@@ -6,7 +6,7 @@ struct MenuContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Flashing dismiss
-            if timerManager.isFlashing {
+            if timerManager.showDismissButton {
                 Button("知道了，开始下一阶段") {
                     timerManager.dismissAndContinue()
                 }

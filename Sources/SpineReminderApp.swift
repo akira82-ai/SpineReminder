@@ -17,6 +17,7 @@ struct SpineReminderApp: App {
             MenuContentView(timerManager: timerManager)
         } label: {
             Text("\(timerManager.phaseIcon) \(timerManager.formattedTime)")
+                .opacity(timerManager.isFlashing ? 0.4 : 1.0)
         }
     }
 }
